@@ -1,0 +1,14 @@
+header {
+    padding: none;
+    background-color: rgba(67, 90, 237, 0.957);
+    
+    color: #ffffff;
+    align-items:center;
+    margin-top: -14px;
+    margin-bottom: -14px;
+}
+
+h1 {
+    font-size: 30px;
+    color:#ffffff;
+}
