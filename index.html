@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">ß
     <link rel="stylesheet" href="./Assets/style.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +13,28 @@
         <h1 style="text-align:center">Weather Dashboard</h1>
     </header>
 
-    <div>
-        <div class ="form container">
-            <aside>
-                <h2>Search for a City</h2>
-                <form>
-                    <input type="text" placeholder="Bloomington" />
-                    <button type="submit">Search</button>
-                </form>
-            </aside>
+    <div id = "formContainer" class ="formContainer">
+        <aside>
+            <h2>Search for a City:</h2>
+            <form>
+                <input type="text" placeholder="Bloomington" />
+                <button type="submit">Search</button>
+            </form>
+            <hr>
+        </aside>
+    </div>
+
+    <div id = "todayCard" class="todayCard" style="width: 18rem;">
+        <div class="card-header">
+          Featured
         </div>
-    </div>
-
-    <div>
-
-    </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+        </ul>
+      </div>
 
 </body>
 </html>

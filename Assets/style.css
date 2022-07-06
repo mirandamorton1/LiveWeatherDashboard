@@ -12,3 +12,15 @@ h1 {
     font-size: 30px;
     color:#ffffff;
 }
+
+.formContainer {
+ border:solid black;
+ border-width: 1px;
+ display: inline-block;
+}
+
+.todayCard {
+    border: solid black;
+    border-width: 1px;
+    display: inline-block;
+}
