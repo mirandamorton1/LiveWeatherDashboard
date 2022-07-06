@@ -17,10 +17,12 @@ h1 {
  border:solid black;
  border-width: 1px;
  display: inline-block;
+ margin-left: 10px;
 }
 
 .todayCard {
     border: solid black;
     border-width: 1px;
     display: inline-block;
+    margin-top: 10px;
 }
