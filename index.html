@@ -17,22 +17,22 @@
         <aside>
             <h2>Search for a City:</h2>
             <form>
-                <input type="text" placeholder="Bloomington" />
-                <button type="submit">Search</button>
+                <input id="userInput" type="text" placeholder="Bloomington" />
+                <button id="searchBtn" type="submit">Search</button>
             </form>
             <hr>
         </aside>
     </div>
 
     <div id = "todayCard" class="todayCard" style="width: 63rem;">
-        <div class="card-header">
-          City
+        <div id="searchedCity" class="card-header">
+          City <p id="currentDate">Today's Date:</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Temp:</li>
-          <li class="list-group-item">Wind:</li>
-          <li class="list-group-item">Humidity</li>
-          <li class="list-group-item">UV Index</li>
+          <li id= "temp" class="list-group-item">Temp:</li>
+          <li id="wind" class="list-group-item">Wind:</li>
+          <li id="humidity" class="list-group-item">Humidity</li>
+          <li id="uv" class="list-group-item">UV Index</li>
         </ul>
       </div>
     
@@ -43,5 +43,9 @@
         <div class="card" width="width: 18rem">Day 4</div>
         <div class="card" width="width: 18rem">Day 5</div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./Assets/script.js"></script> 
 </body>
 </html>
