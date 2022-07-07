@@ -26,7 +26,7 @@ function fetchLocation(userInput) {
     // fetch Weather(data we recieved from fetchlocation)
     console.log(userInput)
     fetch(
-        "https://api.openweathermap.org/data/2.5/weather?q=" + userInput + '&limit=&appid=2b4f64abd099e1c41243e3911cd18532'
+        "https://api.openweathermap.org/data/2.5/weather?q=" + userInput + '&units=imperial&appid=2b4f64abd099e1c41243e3911cd18532'
     )
         .then(function (response){
             return response.json()
@@ -56,7 +56,7 @@ function fetchLocation(userInput) {
         //need to get different api to get uv index specifically, not lat and long, still works
         fetch(
             "https://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat +
-            "&lon=" + response.coord.lon + "&appid=2b4f64abd099e1c41243e3911cd18532")
+            "&lon=" + response.coord.lon + "&units=imperial&appid=2b4f64abd099e1c41243e3911cd18532")
 
             .then(function (response){
                 return response.json()
@@ -77,9 +77,9 @@ function fetchLocation(userInput) {
 
             });
             //forecast
-            var cnt = 6;
+            var cnt = 5;
         fetch(
-            "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&cnt=" + cnt+ "&appid=c10bb3bd22f90d636baa008b1529ee25"
+            "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&cnt=" + cnt+ "&units=imperial&appid=c10bb3bd22f90d636baa008b1529ee25"
         ) 
         .then(function (response){
             return response.json()
@@ -87,7 +87,7 @@ function fetchLocation(userInput) {
         .then(function (response) {
             console.log(response)
 
-            for (var i = 1; i < response.list.length; i++) {
+            for (var i = 0; i < response.list.length; i++) {
                 var timeWeek = moment(response.list[i].dt * 1000).format("MM/DD/YYYY")
                 console.log(timeWeek)
 
