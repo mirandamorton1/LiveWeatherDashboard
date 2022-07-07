@@ -34,3 +34,7 @@ h1 {
 #time {
     font-size: 25px;
 }
+
+.card {
+    display:inline-block;
+}

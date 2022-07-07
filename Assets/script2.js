@@ -77,7 +77,7 @@ function fetchLocation(userInput) {
 
             });
             //forecast
-            var cnt = 5;
+            var cnt = 6;
         fetch(
             "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&cnt=" + cnt+ "&appid=c10bb3bd22f90d636baa008b1529ee25"
         ) 
@@ -120,30 +120,30 @@ function fetchLocation(userInput) {
 
 //FUNCTIONALITY FOR FETCHING WEATHER//
 
-function fetchWeather (lat, lon) {
-    console.log(lat);
-    console.log(lon);
-    // get some data for the weather in the lcoation we search using an api call
-    //call it
+// function fetchWeather (lat, lon) {
+//     console.log(lat);
+//     console.log(lon);
+//     // get some data for the weather in the lcoation we search using an api call
+//     //call it
     
-    fetch(
-        'https://api.openweathermap.org/data/2.5/onecall?lat' + lat + "&lon" + lon + '&units=imperial&appid=2b4f64abd099e1c41243e3911cd18532'
-        )
-    .then(function (response) {
-        console.log(response);
-        return response.json();
-    })
-    .then(function (weatherAPIInformation){
-        console.log(weatherAPIInformation)
+//     fetch(
+//         'https://api.openweathermap.org/data/2.5/onecall?lat' + lat + "&lon" + lon + '&units=imperial&appid=2b4f64abd099e1c41243e3911cd18532'
+//         )
+//     .then(function (response) {
+//         console.log(response);
+//         return response.json();
+//     })
+//     .then(function (weatherAPIInformation){
+//         console.log(weatherAPIInformation)
 
-    })
-    // renderWeather(data)
-    }
+//     })
+//     // renderWeather(data)
+//     }
     
-//FUNCTIONALITY FOR RENDERING CONTENT
-function renderWeather(data) {
-    //render the weather
-    }
+// //FUNCTIONALITY FOR RENDERING CONTENT
+// function renderWeather(data) {
+//     //render the weather
+//     }
     // data.temp
     // data.wind
     // data.humidity
