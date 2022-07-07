@@ -26,3 +26,11 @@ h1 {
     display: inline-block;
     margin-top: 10px;
 }
+
+#city {
+    font-size:30px;
+}
+
+#time {
+    font-size: 25px;
+}

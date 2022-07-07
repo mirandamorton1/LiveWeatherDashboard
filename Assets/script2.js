@@ -32,28 +32,27 @@ function fetchLocation(userInput) {
             return response.json()
         })
         .then(function (response) {
-            // var lat = locationAPIInformation[0].lat;
-            // var lon = locationAPIInformation[0].lon;
+    
             console.log(response);
             var temp = response.main.temp;
             var wind = response.wind.speed;
             var humidity = response.main.humidity;
             var city = response.name;
             var icon = `https://api.openweathermap.org/img/w/${response.weather[0].icon}`
-            var time = moment(response.dt * 1000).format("DD MMM YYYY");
+            var time = moment(response.dt * 1000).format("MM/DD/YYYY");
             console.log(time)
 
             var imageTag = document.createElement("img");
             imageTag.setAttribute("src",icon);
-            $("#city").append(" ", imageTag);
         
 
 
             $("#temp").append(" ",temp, " F");
-            $("#wind").append(" ",wind);
-            $("#humidity").append(" ",humidity);
+            $("#wind").append(" ",wind, "MPH");
+            $("#humidity").append(" ",humidity, "%");
             $("#city").append(" ", city);
-        
+            $("#time").append(" ", time);
+        //need to get different api to get uv index specifically, not lat and long, still works
         fetch(
             "https://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat +
             "&lon=" + response.coord.lon + "&appid=2b4f64abd099e1c41243e3911cd18532")
@@ -93,7 +92,7 @@ function fetchLocation(userInput) {
 
 
 
-                $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F");
+                $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F", imageTag);
                 // $("#wind").append(" ",wind);
                 // $("#humidity").append(" ",humidity);
                 // $("#city").append(" ", city);
