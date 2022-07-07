@@ -34,7 +34,8 @@ function fetchLocation(userInput) {
         .then(function (response) {
     
             console.log(response);
-            var temp = response.main.temp;
+            var temp = response.main.temp; 
+            // - 273.15 * 1.8 +32;
             var wind = response.wind.speed;
             var humidity = response.main.humidity;
             var city = response.name;
@@ -48,7 +49,7 @@ function fetchLocation(userInput) {
 
 
             $("#temp").append(" ",temp, " F");
-            $("#wind").append(" ",wind, "MPH");
+            $("#wind").append(" ",wind, " MPH");
             $("#humidity").append(" ",humidity, "%");
             $("#city").append(" ", city);
             $("#time").append(" ", time);
@@ -87,10 +88,10 @@ function fetchLocation(userInput) {
             console.log(response)
 
             for (var i = 0; i < response.list.length; i++) {
-                var timeWeek = moment(response.list[i].dt * 1000).format("DD MMM YYYY")
+                var timeWeek = moment(response.list[i].dt * 1000).format("MM/DD/YYYY")
                 console.log(timeWeek)
 
-
+                $("#timeWeek").append(" ", timeWeek);
 
                 $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F", imageTag);
                 // $("#wind").append(" ",wind);
