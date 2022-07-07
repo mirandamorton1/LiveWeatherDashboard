@@ -24,20 +24,93 @@ $("#searchBtn").click(function (event){
 function fetchLocation(userInput) {
     //get some data pertaining to location -using api call
     // fetch Weather(data we recieved from fetchlocation)
+    console.log(userInput)
     fetch(
-        'http://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=&appid=2b4f64abd099e1c41243e3911cd18532'
+        "https://api.openweathermap.org/data/2.5/weather?q=" + userInput + '&limit=&appid=2b4f64abd099e1c41243e3911cd18532'
     )
-        .then(function (getLocationAPI){
-            return getLocationAPI.json()
+        .then(function (response){
+            return response.json()
         })
-        .then(function (locationAPIInformation) {
-            var lat = locationAPIInformation[0].lat;
-            var lon = locationAPIInformation[0].lon;
-            console.log(locationAPIInformation);
+        .then(function (response) {
+            // var lat = locationAPIInformation[0].lat;
+            // var lon = locationAPIInformation[0].lon;
+            console.log(response);
+            var temp = response.main.temp;
+            var wind = response.wind.speed;
+            var humidity = response.main.humidity;
+            var city = response.name;
+            var icon = `https://api.openweathermap.org/img/w/${response.weather[0].icon}`
+            var time = moment(response.dt * 1000).format("DD MMM YYYY");
+            console.log(time)
+
+            var imageTag = document.createElement("img");
+            imageTag.setAttribute("src",icon);
+            $("#city").append(" ", imageTag);
+        
+
+
+            $("#temp").append(" ",temp, " F");
+            $("#wind").append(" ",wind);
+            $("#humidity").append(" ",humidity);
+            $("#city").append(" ", city);
+        
+        fetch(
+            "https://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat +
+            "&lon=" + response.coord.lon + "&appid=2b4f64abd099e1c41243e3911cd18532")
+
+            .then(function (response){
+                return response.json()
+            })
+            .then(function (response) {
+                console.log(response)
+
+                var uvIndex = parseFloat(response.value);
+                $("#uv").append(" ",uvIndex);
+
+                if (uvIndex <= 2) {
+                $()
+                }
+                else if (uvIndex <=7 ) {
+
+                }
+
+
+            });
+            //forecast
+            var cnt = 5;
+        fetch(
+            "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&cnt=" + cnt+ "&appid=c10bb3bd22f90d636baa008b1529ee25"
+        ) 
+        .then(function (response){
+            return response.json()
         })
-    fetchWeather(lat,lon);
-    console.log(lat);
-    console.log(lon);
+        .then(function (response) {
+            console.log(response)
+
+            for (var i = 0; i < response.list.length; i++) {
+                var timeWeek = moment(response.list[i].dt * 1000).format("DD MMM YYYY")
+                console.log(timeWeek)
+
+
+
+                $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F");
+                // $("#wind").append(" ",wind);
+                // $("#humidity").append(" ",humidity);
+                // $("#city").append(" ", city);
+
+            
+
+            }
+            
+
+        })
+
+        })
+        /// new functionForecast with another call for only 5 days.  i < response.daily.length
+
+    // fetchWeather();
+    
+    // console.log(lon);
 };
 
 //FUNCTIONALITY FOR FETCHING WEATHER//
@@ -51,14 +124,15 @@ function fetchWeather (lat, lon) {
     fetch(
         'https://api.openweathermap.org/data/2.5/onecall?lat' + lat + "&lon" + lon + '&units=imperial&appid=2b4f64abd099e1c41243e3911cd18532'
         )
-    .then(function (getWeatherAPI) {
-        console.log(getWeatherAPI);
+    .then(function (response) {
+        console.log(response);
         return response.json();
     })
     .then(function (weatherAPIInformation){
+        console.log(weatherAPIInformation)
 
     })
-    renderWeather(data)
+    // renderWeather(data)
     }
     
 //FUNCTIONALITY FOR RENDERING CONTENT
