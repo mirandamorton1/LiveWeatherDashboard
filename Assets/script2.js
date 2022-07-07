@@ -1,16 +1,14 @@
 var currentDate = moment().format("MMMM do YYYY");
 var citySearch = $(".citySearch");
 console.log(citySearch)
-var userInput = $('.userInput').val()
-console.log(userInput)
+var userInput = $('#userInput').val()
 
-//SEARCH
+//SEARC
 //grab values from search to use later in functions
-$(".searchBtn").click(function (event){
-    console.log("clicked");
+$("#searchBtn").click(function (event){
     event.preventDefault();
 
-    var userInput = $(".userInput").val();
+    var userInput = $("#userInput").val();
     console.log(userInput);
 
     citySearch.text(userInput + " " + currentDate);
