@@ -99,14 +99,14 @@ function fetchLocation(userInput) {
                 console.log(timeWeek)
 
                 $(`#timeWeek-${i}`).append(" ", timeWeek);
-
-                $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F");
+                var forecastImageTag = document.createElement("img");
+                forecastImageTag.setAttribute("src",getIcon(response.list[i].weather[0].icon));
+                $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F", forecastImageTag);
 
                 $(`#wind-${i}`).append(" ",response.list[i].speed, " MPH");
 
                 $(`#humidity-${i}`).append(" ",response.list[i].humidity, "%");
 
-            
 
             }
             
