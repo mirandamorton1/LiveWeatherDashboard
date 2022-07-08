@@ -14,10 +14,11 @@ h1 {
 }
 
 .formContainer {
- border:solid black;
- border-width: 1px;
+ /* border:solid black;
+ border-width: 1px; */
  display: inline-block;
  margin-left: 10px;
+ margin-top: 5px;
 }
 
 .todayCard {
