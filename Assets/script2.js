@@ -1,3 +1,4 @@
+var searchHistory = [];
 var currentDate = moment().format("MMMM do YYYY");
 var citySearch = $(".citySearch");
 console.log(citySearch)
