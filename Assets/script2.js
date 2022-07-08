@@ -2,6 +2,9 @@ var currentDate = moment().format("MMMM do YYYY");
 var citySearch = $(".citySearch");
 console.log(citySearch)
 var userInput = $('#userInput').val()
+function getIcon(iconType) {
+   return `https://api.openweathermap.org/img/w/${iconType}`
+}
 
 //SEARC
 //grab values from search to use later in functions
@@ -35,11 +38,10 @@ function fetchLocation(userInput) {
     
             console.log(response);
             var temp = response.main.temp; 
-            // - 273.15 * 1.8 +32;
             var wind = response.wind.speed;
             var humidity = response.main.humidity;
             var city = response.name;
-            var icon = `https://api.openweathermap.org/img/w/${response.weather[0].icon}`
+            var icon = getIcon(response.weather[0].icon)
             var time = moment(response.dt * 1000).format("MM/DD/YYYY");
             console.log(time)
 
@@ -47,12 +49,13 @@ function fetchLocation(userInput) {
             imageTag.setAttribute("src",icon);
         
 
-
-            $("#temp").append(" ",temp, " F");
-            $("#wind").append(" ",wind, " MPH");
-            $("#humidity").append(" ",humidity, "%");
-            $("#city").append(" ", city);
-            $("#time").append(" ", time);
+            console.log("temp")
+            $("#temp").text("");
+            $("#temp").append(" ",temp, " F",imageTag);
+            $("#wind").text(" "+wind+ " MPH");
+            $("#humidity").text(" "+humidity+ "%");
+            $("#city").text(" "+ city);
+            $("#time").text(" "+ time);
         //need to get different api to get uv index specifically, not lat and long, still works
         fetch(
             "https://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat +
@@ -65,19 +68,23 @@ function fetchLocation(userInput) {
                 console.log(response)
 
                 var uvIndex = parseFloat(response.value);
-                $("#uv").append(" ",uvIndex);
+                var $uv = $("#uv");
+                $uv.append(" ",uvIndex);
 
                 if (uvIndex <= 2) {
-                $()
+                    $uv.addClass("background-green")
+                // $()
                 }
-                else if (uvIndex <=7 ) {
-
+                else if (uvIndex <= 5 ) {
+                    $uv.addClass("background-yellow")
                 }
-
+                else if (uvIndex <=10 ) {
+                    $uv.addClass("background-red")
+                }
 
             });
             //forecast
-            var cnt = 5;
+            var cnt = 6;
         fetch(
             "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&cnt=" + cnt+ "&units=imperial&appid=c10bb3bd22f90d636baa008b1529ee25"
         ) 
@@ -87,21 +94,17 @@ function fetchLocation(userInput) {
         .then(function (response) {
             console.log(response)
 
-            for (var i = 0; i < response.list.length; i++) {
+            for (var i = 1; i < response.list.length; i++) {
                 var timeWeek = moment(response.list[i].dt * 1000).format("MM/DD/YYYY")
                 console.log(timeWeek)
 
-                $("#timeWeek").append(" ", timeWeek);
+                $(`#timeWeek-${i}`).append(" ", timeWeek);
 
-                $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F", imageTag);
+                $(`#temp-${i}`).append(" ",response.list[i].temp.day, " F");
 
                 $(`#wind-${i}`).append(" ",response.list[i].speed, " MPH");
 
                 $(`#humidity-${i}`).append(" ",response.list[i].humidity, "%");
-
-                // $(`#uv-$`).append(" ",uvIndex);
-
-                // $("#city").append(" ", city);
 
             
 

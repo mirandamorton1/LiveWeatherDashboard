@@ -38,3 +38,19 @@ h1 {
 .card {
     display:inline-block;
 }
+
+.five-day {
+    align-items: right;
+}
+
+.background-red {
+    color: red;
+}
+
+.background-green {
+    color: green;
+}
+
+.background-yellow {
+    color: yellow;
+}
