@@ -1,48 +1,48 @@
 var currentDate = moment().format("MMMM do YYYY");
-var searchHistory = $(".searchHistory");
+var searchHistory = []
 console.log(searchHistory)
 var userInput = $('#userInput').val()
 
 
-// function renderSearchHistory(){
-//     searchHistoryContainer.innerHTML="";
+function renderSearchHistory(){
+    searchHistoryContainer.innerHTML="";
     
-//     for ( var i = searchHistory.length -1; i >= 0; i--){
-//       var btn= document.createElement("button");
-//       btn.setAttribute("type","button");
-//       btn.setAttribute("aria-controls", "Today Forecast");
-//       btn.classList.add("history-btn","btn-history");
-//       btn.setAttribute("data-search",searchHistory[i]);
-//       btn.textContent = searchHistory[i];
-//       searchHistoryContainer.append(btn);
-//     }
-//     }
-    
-    
-//     function addToHistory(search) {
-//       if (searchHistory.indexOf(search) !== -1){
-//       return;
-//     }
-//     searchHistory.push(search);
-//     localStorage.setItem("search-history", JSON.stringify(searchHistory));
-//     renderSearchHistory();
-//     console.log(searchHistory);
-//     }
+    for ( var i = searchHistory.length -1; i >= 0; i--){
+      var btn= document.createElement("button");
+      btn.setAttribute("type","button");
+      btn.setAttribute("aria-controls", "Today Forecast");
+      btn.classList.add("history-btn","btn-history");
+      btn.setAttribute("data-search",searchHistory[i]);
+      btn.textContent = searchHistory[i];
+      searchHistoryContainer.append(btn);
+    }
+    }
     
     
-//     function getSearchHistory(){
-//       var storedHistory= localStorage.getItem("search-history");
+    function addToHistory(search) {
+      if (searchHistory.indexOf(search) !== -1){
+      return;
+    }
+    searchHistory.push(search);
+    localStorage.setItem("search-history", JSON.stringify(searchHistory));
+    renderSearchHistory();
+    console.log(searchHistory);
+    }
     
-//       if(storedHistory){
-//         searchHistory=JSON.parse(storedHistory)
-//       }
-//       console.log(searchHistory);
-//       renderSearchHistory();
-//     }
+    
+    function getSearchHistory(){
+      var storedHistory= localStorage.getItem("search-history");
+    
+      if(storedHistory){
+        searchHistory=JSON.parse(storedHistory)
+      }
+      console.log(searchHistory);
+      renderSearchHistory();
+    }
     
     
-//     //History Feature .. use local storage
-//     getSearchHistory();
+    //History Feature .. use local storage
+    getSearchHistory();
 
 
 function getIcon(iconType) {
@@ -59,8 +59,9 @@ $("#searchBtn").click(function (event){
 
     var userInput = $("#userInput").val();
     console.log(userInput);
+    addToHistory(userInput);
 
-    searchHistory.text(userInput + " " + currentDate);
+    // searchHistory.text(userInput + " " + currentDate);
 
     fetchLocation(userInput);
 
