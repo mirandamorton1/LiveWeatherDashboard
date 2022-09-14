@@ -29,7 +29,12 @@ Up to date weather dashboard that will let users type in the name of the city wh
 `This project is licensed under MIT`
 
   ### Technology Used:
-  - NA
+  - HTML
+  - CSS
+- JavaScript
+- jQuery
+- Bootstrap
+- Open Weather API
   ### Contributors: 
   To contribute to this project, clone this repo locally and commit your code on a separate branch. 
   #### Contributors:
